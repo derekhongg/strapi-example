@@ -1,22 +1,28 @@
+import Link from "next/link";
+
 export default function Home({ posts }) {
-  console.log("I am on the frontend")
   return (
     <div>
-      <h1>Hello</h1>
-      {posts && posts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.Title}</h2>
-        </div>
-      ))}
+      {/* loop over the posts and show them */}
+      {posts &&
+        posts.data.map((post) => (
+          <Link href={`/${post.attributes.Slug}`} key={post.id}>
+            <a>
+              <h2>{post.attributes.Title}</h2>
+            </a>
+          </Link>
+        ))}
     </div>
-  )
+  );
 }
 
-export async function geStaticProps() {
-  //Get Posts from API
-  const res = await fetch('http://localhost:1337/api/posts');
+export async function getStaticProps() {
+  // get posts from our api
+  const res = await fetch("http://localhost:1337/api/posts");
+  
   const posts = await res.json();
+  console.log(posts);
   return {
     props: { posts },
-  }
+  };
 }
