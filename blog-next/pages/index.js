@@ -9,6 +9,8 @@ export default function Home({ posts }) {
           <Link href={`/${post.attributes.Slug}`} key={post.id}>
             <a>
               <h2>{post.attributes.Title}</h2>
+              <h2>{post.attributes.Slug}</h2>
+              <p>{post.attributes.Content}</p>
             </a>
           </Link>
         ))}
