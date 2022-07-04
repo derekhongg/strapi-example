@@ -1,5 +1,5 @@
 export default function Post({ post }) {
-    return(
+    return (
         <div>{post.Title}</div>
     )
 };
@@ -11,11 +11,11 @@ export async function getStaticPaths({ posts }) {
 
     const paths = posts.map((post) => ({
         params: { slug: post.Slug },
-    }))
+    }));
 
     return {
         paths,
-        fallback: false
+        fallback: true,
     }
 }
 
@@ -25,7 +25,7 @@ export async function getStaticPaths({ posts }) {
 export async function getStaticProps({ params }) {
     const { slug } = params;
 
-    const res = await fetch(`http://localhost:1337/posts/?Slug=${slug}`);
+    const res = await fetch(`http://localhost:1337/api/posts?Slug=${slug}`);
     const data = await res.json();
     const post = data[0];
 
