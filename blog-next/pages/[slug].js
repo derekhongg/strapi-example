@@ -23,9 +23,9 @@ export async function getStaticPaths({ posts }) {
 
 //for reach individual page: get data for that page
 export async function getStaticProps({ params }) {
-    const { slug } = params;
+    const { id } = params;
 
-    const res = await fetch(`http://localhost:1337/api/posts?Slug=${slug}`);
+    const res = await fetch(`http://localhost:1337/api/posts/${id}`);
     const data = await res.json();
     const post = data[0];
 

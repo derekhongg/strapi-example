@@ -6,7 +6,7 @@ export default function Home({ posts }) {
       {/* loop over the posts and show them */}
       {posts &&
         posts.data.map((post) => (
-          <Link href={`/${post.attributes.Slug}`} key={post.id}>
+          <Link href={`/${post.id}`} key={post.id}>
             <a>
               <h2>{post.attributes.Title}</h2>
               <h2>{post.attributes.Slug}</h2>
