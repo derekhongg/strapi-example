@@ -5,9 +5,9 @@ export default function Post({ post }) {
 };
 
 //tell next.js how many pages there are
-export async function getStaticPaths({ posts }) {
-    const res = await fetch('http://localhost:1337/api/posts')
-    const data = await res.json();
+export async function getStaticPaths() {
+    const res = await fetch("http://localhost:1337/api/posts");
+    const posts = await res.json();
 
     const paths = posts.map((post) => ({
         params: { slug: post.Slug },
@@ -16,7 +16,7 @@ export async function getStaticPaths({ posts }) {
     return {
         paths,
         fallback: true,
-    }
+    };
 }
 
 
